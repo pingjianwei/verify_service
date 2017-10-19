@@ -1,0 +1,40 @@
+{application, verify_service,
+  [{description, "An OTP application"},
+    {vsn, "0.1.0"},
+    {registered, []},
+    {mod, {verify_service_app, []}},
+    {applications,
+      [kernel,
+        stdlib,
+        lager
+      ]},
+    {env, [
+%%      public params
+      {private_key_default_pwd, "111111"}
+      , {check_interval, 20}  % unit: minute
+      , {priv_dir, "/priv"}
+%%      ums config pragrams
+      , {ums_keys_dir, "/keys/ums/"}
+      , {ums_public_key_file, "ums_public_key.pem"}
+      , {ums_mer_list,
+        [
+          {ums_bankcard, {bankcard, ['030000122']}}
+        ]}
+      , {ums_mer_props,
+        #{
+          '030000122' => #{}
+        }}
+      , {ums_merchId, 030000122}
+      , {ums_bank_url, "http://113.57.148.38:81/easserver/gateway/1/realNameVerify/030000122"}
+      , {ums_timeout, 20000}
+
+
+    ]},
+
+
+    {modules, []},
+
+    {maintainers, []},
+    {licenses, []},
+    {links, []}
+  ]}.
