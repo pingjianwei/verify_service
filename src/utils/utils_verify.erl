@@ -13,14 +13,14 @@
 -export([handle_req/2]).
 
 handle_req(ums,ReqParams)->
-  ReqParams2 = key_change({signature,sign},ReqParams),
-  ReqBody = jsx:encode(ReqParams2),
+%%  ReqParams2 = key_change({signature,sign},ReqParams),
+  ReqBody = jsx:encode(ReqParams),
   UmsUrl = ums_config:get_config(ums_bank_url),
   Timeout = ums_config:get_config(ums_timeout),
   case httpc:request(post, {UmsUrl, [], "application/json;charset=UTF-8", ReqBody}, [{timeout,Timeout}], []) of
     {ok, {{_, 200, _}, _, RespBody}} ->
       UpRespBody = jsx:decode(list_to_binary(RespBody), [return_maps]),
-      lager:debug("Up response body = ~p", [UpRespBody]),
+      lager:debug("Ums response body = ~p", [UpRespBody]),
       maps:put(httpCode,200,UpRespBody);
 
     {ok, {{_, RespCode, _}, _, RespBody}} ->
