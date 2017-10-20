@@ -14,7 +14,7 @@
   , status
   , default
   , facilitator
-  , update_ts = erlang:timestamp() :: ts()
+  , update_ts = erlang:timestamp() 
 }).
 -type channel() :: #channel{}.
 -export_type([channel/0]).
