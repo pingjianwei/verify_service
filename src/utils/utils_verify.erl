@@ -13,8 +13,8 @@
 -export([handle_req/2]).
 
 handle_req(ums,ReqParams)->
-%%  ReqParams2 = key_change({signature,sign},ReqParams),
-  ReqBody = jsx:encode(ReqParams),
+  ReqParams2 = key_change({signature,sign},ReqParams),
+  ReqBody = jsx:encode(ReqParams2),
   UmsUrl = ums_config:get_config(ums_bank_url),
   Timeout = ums_config:get_config(ums_timeout),
   case httpc:request(post, {UmsUrl, [], "application/json;charset=UTF-8", ReqBody}, [{timeout,Timeout}], []) of
