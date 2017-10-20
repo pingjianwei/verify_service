@@ -13,6 +13,7 @@
       {private_key_default_pwd, "111111"}
       , {check_interval, 20}  % unit: minute
       , {priv_dir, "/priv"}
+      , {check_list,[ums_bankcard]}
 %%      ums config pragrams
       , {ums_keys_dir, "/keys/ums/"}
       , {ums_public_key_file, "ums_public_key.pem"}

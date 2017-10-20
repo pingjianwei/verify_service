@@ -122,7 +122,7 @@ handle_cast(Request, State) ->
   {noreply, NewState :: #state{}, timeout() | hibernate} |
   {stop, Reason :: term(), NewState :: #state{}}).
 handle_info(timeout, State) ->
-  CheckList = ums_config:get_config(channel_check_list),
+  CheckList = ums_config:get_config(check_list),
   case is_overtime(erlang:timestamp(), State) of
     true ->
       NewState = State#state{ref_time = erlang:timestamp()},
@@ -181,7 +181,7 @@ check(CheckList) ->
 is_overtime(CurrentTime, State) ->
   MicroInterval = timer:now_diff(CurrentTime, State#state.ref_time),
   MilliInterval = erlang:trunc(MicroInterval * 1.0e-3),
-  lager:debug("Ref_time:~p interval_time:~p ", [calendar:now_to_local_time(State#state.ref_time), State#state.interval_time]),
+%%  lager:debug("Ref_time:~p interval_time:~p ", [calendar:now_to_local_time(State#state.ref_time), State#state.interval_time]),
   MilliInterval >= State#state.interval_time.
 %%---------------------------------------------------------------------
 update_channel(ChannelType,RespMap) ->
