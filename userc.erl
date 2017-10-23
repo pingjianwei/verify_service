@@ -13,6 +13,7 @@
 %%常用的测试目录：请保证路径正确，注意路径里面是用/ 或\\的
 -define(WORK_DIRS, [
   "src/",
+  "src/AES/",
   "src/repo/",
   "src/model/",
   "src/protocol/model/",
